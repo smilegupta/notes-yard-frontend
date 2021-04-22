@@ -7,5 +7,5 @@ image-dock:
     code:
       src: ./build
     bucketName: ${env.BUCKET_NAME}
-    domain: motes-yard.smilegupta.tech
+    domain: notes-yard.smilegupta.tech
       
