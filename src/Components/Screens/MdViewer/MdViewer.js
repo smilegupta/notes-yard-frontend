@@ -1,5 +1,5 @@
 import { Fragment } from 'react'
-import { Row, Col, Button, Image } from "react-bootstrap";
+import { Row, Col} from "react-bootstrap";
 import { Link } from "react-router-dom";
 
 const MdViewer = () => {
