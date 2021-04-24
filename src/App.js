@@ -13,6 +13,7 @@ import ProtectedRoute from "./Components/Common/ProtectedRoute";
 import ErrorPage from "./Components/Common/ErrorPage";
 import PasteBin from './Components/Screens/PasteBin/Pastebin'
 import MdPreviewer from './Components/Screens/MdViewer/MdViewer'
+import NotebookPage from './Components/Screens/NotebookPage/Notebook'
 
 
 
@@ -57,6 +58,11 @@ function App() {
                 <ProtectedRoute
                   path="/home"
                   component={HomeScreen}
+                  auth={authProps}
+                />
+                 <ProtectedRoute
+                  path="/notebook/:id"
+                  component={NotebookPage}
                   auth={authProps}
                 />
                 <Route

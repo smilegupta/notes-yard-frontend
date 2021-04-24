@@ -124,6 +124,9 @@ a {
   background-color: #ffffff;
   bottom: 36px;
   height: 75px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .notebook-empty{
