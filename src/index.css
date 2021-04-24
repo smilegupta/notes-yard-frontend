@@ -134,3 +134,7 @@ a {
     border-color: #868e96;
     border-width: 2px;
 }
+textarea.form-control {
+  border-radius: 0px  !important;
+}
+
