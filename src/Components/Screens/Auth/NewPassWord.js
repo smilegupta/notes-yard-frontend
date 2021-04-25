@@ -118,7 +118,7 @@ const NewPassWord = ({ match }) => {
     <FormContainer>
       <Row>
         <Col className="text-center my-4">
-          <Image src={LoginImage} alt="empty" className="w-75" />
+          <Image src={LoginImage} alt="empty" className="w-100" />
         </Col>
       </Row>
       <h4>Reset Password</h4>
