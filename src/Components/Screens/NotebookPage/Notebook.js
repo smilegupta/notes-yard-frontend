@@ -1,11 +1,13 @@
-import { useState } from "react";
+/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, withRouter, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteNotebook } from "../../../CRUD/notebook.crud";
 import EditNotebook from "../../Modals/EditNotebook";
-import ReactQuill from "react-quill";
+import { getNotes } from "../../../CRUD/note.crud";
 import "../../../../node_modules/react-quill/dist/quill.snow.css";
+
 toast.configure();
 
 const Notebook = ({ match, auth }) => {
@@ -15,6 +17,16 @@ const Notebook = ({ match, auth }) => {
   const notebookId = match.params.id;
   const userId = auth.user.attributes.sub;
   const [modalStatus, setModalStatus] = useState(false);
+
+  // useEffect(() => {
+  //   getPasteBinResponse();
+  // }, []);
+
+  // API to get pastebin
+  // const getPasteBinResponse = async () => {
+  //   const res = await getNotes(notebookId);
+  //   console.log(res.data)
+  // };
 
   // Function to delete Notebook
   const deleteNotebookFun = async (e) => {
@@ -82,7 +94,36 @@ const Notebook = ({ match, auth }) => {
             />{" "}
           </h3>
           <br />
-          <ReactQuill />
+        </Col>
+      </Row>
+      <Row>
+        <Col sm={12} lg={4} xl={4} md={4} xs={12}>
+          <div className="card bg-light mb-3 note-card">
+            <div className="card-header nameslip-ellipsis"> Header </div>
+            <div className="card-body">
+              <p className="card-text block-with-text">
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content. Some quick example text to build
+                on the card title and make up the bulk of the card's content.
+                Some quick example text to build on the card title and make up
+                the bulk of the card's content.
+              </p>
+              <p className="text-right">
+                <i
+                  className="las la-glasses text-success cursor-pointer ml-1 "
+                  style={{ fontSize: "20px" }}
+                />
+                <i
+                  className="las la-cog text-info cursor-pointer ml-1"
+                  style={{ fontSize: "20px" }}
+                />
+                <i
+                  className="las la-trash text-danger cursor-pointer ml-1"
+                  style={{ fontSize: "20px" }}
+                />
+              </p>
+            </div>
+          </div>
         </Col>
       </Row>
       <EditNotebook
