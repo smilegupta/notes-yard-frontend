@@ -69,7 +69,9 @@ const HomeScreen = ({ auth }) => {
                 xs={8}
                 className="mx-md-0 mx-auto"
               >
-                <Link to={`/notebook/${notebook.notebookId}`}>
+                <Link
+                  to={`/notebook/${notebook.notebookId}/${notebook.notebookName}`}
+                >
                   <NotebookCard
                     name={notebook.notebookName}
                     notesCount={notebook.notesCount}

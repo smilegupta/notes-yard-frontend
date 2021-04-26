@@ -123,10 +123,7 @@ a {
   width: 100%;
   background-color: #ffffff;
   bottom: 36px;
-  height: 93px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  height: 75px;
 }
 
 .notebook-empty{
@@ -146,4 +143,10 @@ textarea.form-control {
 .nameslip-border{
   border-top: 0.1px solid #868e96;
   border-bottom: 0.1px solid #868e96;
+}
+
+.nameslip-ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
