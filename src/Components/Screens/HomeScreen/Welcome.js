@@ -10,9 +10,6 @@ const Welcome = () => {
         {" "}
         <Image src={HomeScreenImage} alt="empty" className="w-50" />
         <h3 className="w-100 mt-md-4 mt-2">Welcome to Notes Yard</h3>
-        <h6 className="w-100 mt-4 text-muted">
-          Create Sharable SWOT Analysis Board 
-        </h6>
         <h6 className="w-100 mt-2 text-muted">
           Scribble Notes and Share Instatnously
         </h6>

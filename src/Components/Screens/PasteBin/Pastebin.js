@@ -4,18 +4,21 @@ import { Link } from "react-router-dom";
 import { createPasteBin } from "../../../CRUD/pastebin.crud";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { toast } from "react-toastify";
+import PasteBinDetails from "../../Modals/PasteBinDetails";
 toast.configure();
 
 const Pastebin = () => {
   // State Variables
   const [pastebin, setPastebin] = useState("");
   const [pastebinId, setPasteBinId] = useState("");
+  const [modalStatus, setModalStatus] = useState(false);
 
   // API Call to Make Pastebin
   const savepasteBin = async () => {
     try {
       const res = await createPasteBin(pastebin);
       setPasteBinId(res.data.pasteBinId);
+      setModalStatus(true);
       const message = "Bingo! Your Paste Bin is Created";
       toast.success(message, {
         position: "top-right",
@@ -58,15 +61,6 @@ const Pastebin = () => {
     setPastebin("");
   };
 
-  const pasteBinDownload = () => {
-    const element = document.createElement("a");
-    const file = new Blob([document.getElementById('myPasteBin').value], {type: 'text/plain'});
-    element.href = URL.createObjectURL(file);
-    element.download = "myFile.txt";
-    document.body.appendChild(element); // Required for this to work in FireFox
-    element.click();
-  }
-
   return (
     <Container className="my-3">
       <Row className="mb-3">
@@ -88,7 +82,6 @@ const Pastebin = () => {
               className="lar la-save cursor-pointer"
               onClick={(e) => savepasteBin()}
             />{" "}
-            <i className="las la-download cursor-pointer" onClick={(e) => pasteBinDownload()}/>
           </h4>
           {pastebinId && (
             <h6 className="text-muted">
@@ -112,10 +105,16 @@ const Pastebin = () => {
             className="form-control w-100 h-100 p-4"
             value={pastebin}
             onChange={(e) => setPastebin(e.target.value)}
-            id='myPasteBin'
+            id="myPasteBin"
           />
         </Col>
       </Row>
+      <PasteBinDetails
+        modalStatus={modalStatus}
+        setModalStatus={setModalStatus}
+        pasteBinContent={pastebin}
+        pasteBinId={pastebinId}
+      />
     </Container>
   );
 };
