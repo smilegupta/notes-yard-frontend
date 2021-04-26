@@ -1,13 +1,15 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
+import { createNotebook, getNotebook } from "../../CRUD/notebook.crud"
 toast.configure();
 Modal.setAppElement("*");
 
 const CreateNotebook = ({
   modalStatus,
   setModalStatus,
-  userId
+  userId,
+  setApiResponse
 }) => {
   // State Variables
   const [notebookName, setNotebookName] = useState("");
@@ -36,21 +38,21 @@ const CreateNotebook = ({
     e.preventDefault();
     if (!validateFields()) return;
     try {
-    //   await createNotebook(notebookName, collectionDesc, userId);
-    //   const updatedList = await listCollection(userId);
-    //   setApiResponse(updatedList.data);
-    //   const message = "Bingo! New Album Have Created Successfully.";
-    //   toast.success(message, {
-    //     position: "top-right",
-    //     autoClose: 0,
-    //     hideProgressBar: false,
-    //     closeOnClick: true,
-    //     pauseOnHover: true,
-    //     draggable: true,
-    //   });
-    //   setModalStatus(false);
-    //   setNotebookName("");
-    //   setLoading(false);
+      await createNotebook(userId, notebookName );
+      const updatedList = await getNotebook(userId);
+      setApiResponse(updatedList.data);
+      const message = "Bingo! New Notebook Have Been Created Successfully.";
+      toast.success(message, {
+        position: "top-right",
+        autoClose: 0,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+      });
+      setModalStatus(false);
+      setNotebookName("");
+      setLoading(false);
     } catch (err) {
       let error = err.message || "Something went wrong!";
       toast.error(error, {
