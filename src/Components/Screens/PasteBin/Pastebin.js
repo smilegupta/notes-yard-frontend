@@ -105,7 +105,6 @@ const Pastebin = () => {
             className="form-control w-100 h-100 p-4"
             value={pastebin}
             onChange={(e) => setPastebin(e.target.value)}
-            id="myPasteBin"
           />
         </Col>
       </Row>
