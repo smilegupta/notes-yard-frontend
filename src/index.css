@@ -134,6 +134,11 @@ a {
     border-color: #868e96;
     border-width: 2px;
 }
+
+.notebook-shadow{
+  border: 0.1px solid #868e96;
+}
+
 textarea.form-control {
   border-radius: 0px  !important;
 }
