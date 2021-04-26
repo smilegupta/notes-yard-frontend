@@ -123,7 +123,7 @@ a {
   width: 100%;
   background-color: #ffffff;
   bottom: 36px;
-  height: 75px;
+  height: 93px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -134,7 +134,16 @@ a {
     border-color: #868e96;
     border-width: 2px;
 }
+
+.notebook-shadow{
+  border: 0.1px solid #868e96;
+}
+
 textarea.form-control {
   border-radius: 0px  !important;
 }
 
+.nameslip-border{
+  border-top: 0.1px solid #868e96;
+  border-bottom: 0.1px solid #868e96;
+}

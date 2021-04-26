@@ -1,20 +1,31 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
-import { createNotebook, getNotebook } from "../../CRUD/notebook.crud"
+import { editNotebook, getNotebook } from "../../CRUD/notebook.crud"
 toast.configure();
 Modal.setAppElement("*");
 
-const CreateNotebook = ({
+const EditNotebook = ({
   modalStatus,
   setModalStatus,
   userId,
-  setApiResponse
+  setApiResponse,
+  notebookId,
+  name
 }) => {
   // State Variables
-  const [notebookName, setNotebookName] = useState("");
+  const [notebookName, setNotebookName] = useState('');
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if(modalStatus){
+        setNotebookName(name)
+    }else{
+        setNotebookName("")
+    }
+  }, [modalStatus])
 
   // Validating that Collection Name
   const validateFields = () => {
@@ -38,10 +49,10 @@ const CreateNotebook = ({
     e.preventDefault();
     if (!validateFields()) return;
     try {
-      await createNotebook(userId, notebookName );
+      await editNotebook(userId, notebookName, notebookId );
       const updatedList = await getNotebook(userId);
       setApiResponse(updatedList.data);
-      const message = "Bingo! New Notebook Have Been Created Successfully.";
+      const message = "Bingo! You have edited Notebook Details Successfully";
       toast.success(message, {
         position: "top-right",
         autoClose: 0,
@@ -76,7 +87,7 @@ const CreateNotebook = ({
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header" style={{ padding: "1.5rem" }}>
-            <h5 className="modal-title">Create Notebook</h5>
+            <h5 className="modal-title">Edit Notebook</h5>
             <button
               type="button"
               className="close"
@@ -98,6 +109,7 @@ const CreateNotebook = ({
                   value={notebookName}
                   placeholder="For Eg: Notebook1"
                   onChange={(e) => {
+                      e.preventDefault()
                     setNotebookName(e.target.value);
                   }}
                   onBlur={validateFields}
@@ -113,7 +125,7 @@ const CreateNotebook = ({
               className="btn btn-primary"
               disabled={loading}
             >
-              Create Notebook {loading ? "  " : ""}
+            Edit Notebook {loading ? "  " : ""}
               <span
                 className={loading ? "spinner-border spinner-border-sm" : ""}
                 role="status"
@@ -127,4 +139,4 @@ const CreateNotebook = ({
   );
 };
 
-export default CreateNotebook;
+export default EditNotebook;

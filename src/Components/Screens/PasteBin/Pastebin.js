@@ -12,9 +12,11 @@ const Pastebin = () => {
   const [pastebin, setPastebin] = useState("");
   const [pastebinId, setPasteBinId] = useState("");
   const [modalStatus, setModalStatus] = useState(false);
+  const [error, setError] = useState("");
 
   // API Call to Make Pastebin
-  const savepasteBin = async () => {
+  const savepasteBin = async (e) => {
+    if (!validateFields()) return;
     try {
       const res = await createPasteBin(pastebin);
       setPasteBinId(res.data.pasteBinId);
@@ -39,6 +41,16 @@ const Pastebin = () => {
         draggable: true,
       });
     }
+  };
+
+  // Validating that Collection Name
+  const validateFields = () => {
+    setError("");
+    if (pastebin === null || pastebin === "") {
+      setError("You can't create an empty pastebin");
+      return false;
+    }
+    return true;
   };
 
   // Function triggered after text is copied
@@ -80,7 +92,7 @@ const Pastebin = () => {
             />{" "}
             <i
               className="lar la-save cursor-pointer"
-              onClick={(e) => savepasteBin()}
+              onClick={(e) => savepasteBin(e)}
             />{" "}
           </h4>
           {pastebinId && (
@@ -105,7 +117,9 @@ const Pastebin = () => {
             className="form-control w-100 h-100 p-4"
             value={pastebin}
             onChange={(e) => setPastebin(e.target.value)}
+            onBlur={validateFields}
           />
+          <div className="text-danger">{error || ""}</div>
         </Col>
       </Row>
       <PasteBinDetails
