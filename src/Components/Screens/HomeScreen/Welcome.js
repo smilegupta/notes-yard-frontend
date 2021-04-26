@@ -1,17 +1,15 @@
-import { Row, Col, Image, Button } from "react-bootstrap";
+import { Row, Col, Image, Button, Container } from "react-bootstrap";
 import HomeScreenImage from "../../../Images/homescreen.svg";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   return (
+    <Container className="my-3">
     <Row>
       <Col className="text-center mt-3">
         {" "}
         <Image src={HomeScreenImage} alt="empty" className="w-50" />
         <h3 className="w-100 mt-md-4 mt-2">Welcome to Notes Yard</h3>
-        <h6 className="w-100 mt-4 text-muted">
-          Create Sharable SWOT Analysis Board 
-        </h6>
         <h6 className="w-100 mt-2 text-muted">
           Scribble Notes and Share Instatnously
         </h6>
@@ -32,6 +30,7 @@ const Welcome = () => {
         </Link>
       </Col>
     </Row>
+     </Container>
   );
 };
 

@@ -1,9 +1,8 @@
 import { useState, useEffect, Fragment } from "react";
-import { Container } from "react-bootstrap";
 import Header from "./Components/Common/Header";
 import HomeScreen from "./Components/Screens/HomeScreen/HomeScreen";
 import Welcome from "./Components/Screens/HomeScreen/Welcome";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Route, Switch, withRouter } from "react-router-dom";
 import Login from "./Components/Screens/Auth/Login";
 import Register from "./Components/Screens/Auth/Register";
 import ForgetPassword from "./Components/Screens/Auth/ForgotPassword";
@@ -11,13 +10,13 @@ import NewPassWord from "./Components/Screens/Auth/NewPassWord";
 import { Auth } from "aws-amplify";
 import ProtectedRoute from "./Components/Common/ProtectedRoute";
 import ErrorPage from "./Components/Common/ErrorPage";
-import PasteBin from './Components/Screens/PasteBin/Pastebin'
-import MdPreviewer from './Components/Screens/MdViewer/MdViewer'
-import NotebookPage from './Components/Screens/NotebookPage/Notebook'
+import PasteBin from "./Components/Screens/PasteBin/Pastebin";
+import MdPreviewer from "./Components/Screens/MdViewer/MdViewer";
+import NotebookPage from "./Components/Screens/NotebookPage/Notebook";
+import ViewPasteBin from "./Components/Screens/PasteBin/ViewPasteBin";
 
-
-
-function App() {
+function App({ location }) {
+  console.log(location);
   // State Variables
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isAuthenticating, setAuthenticating] = useState(true);
@@ -49,65 +48,52 @@ function App() {
   return (
     <Fragment>
       {isAuthenticating === false && (
-        <Router>
-          <Header auth={authProps} />
-          <main className="py-3">
-            <Container>
-              <Switch>
-                <Route path="/" component={Welcome} exact />
-                <ProtectedRoute
-                  path="/home"
-                  component={HomeScreen}
-                  auth={authProps}
-                />
-                 <ProtectedRoute
-                  path="/notebook/:id"
-                  component={NotebookPage}
-                  auth={authProps}
-                />
-                <Route
-                  path="/login"
-                  render={(props) => <Login {...props} auth={authProps} />}
-                />
-                <Route
-                  path="/register"
-                  render={(props) => <Register {...props} auth={authProps} />}
-                />
-                <Route
-                  path="/forgot-password"
-                  render={(props) => (
-                    <ForgetPassword {...props} auth={authProps} />
-                  )}
-                  exact
-                />
-                <Route
-                  path="/forgot-password/:email"
-                  render={(props) => (
-                    <ForgetPassword {...props} auth={authProps} />
-                  )}
-                />
-                <Route
-                  path="/new-password/:email"
-                  render={(props) => (
-                    <NewPassWord {...props} auth={authProps} />
-                  )}
-                />
-               <Route
-                  path="/md-previewer"
-                  component={MdPreviewer}
-                />
-                <Route
-                  path="/pastebin"
-                  component={PasteBin}
-                />
-                <Route component={ErrorPage} />
-              </Switch>
-            </Container>
-          </main>
-        </Router>
+        <Fragment>
+          {!location.pathname.includes("/pastebin/view/") && (
+            <Header auth={authProps} />
+          )}
+          <Switch>
+            <Route path="/" component={Welcome} exact />
+            <ProtectedRoute
+              path="/home"
+              component={HomeScreen}
+              auth={authProps}
+            />
+            <ProtectedRoute
+              path="/notebook/:id"
+              component={NotebookPage}
+              auth={authProps}
+            />
+            <Route
+              path="/login"
+              render={(props) => <Login {...props} auth={authProps} />}
+            />
+            <Route
+              path="/register"
+              render={(props) => <Register {...props} auth={authProps} />}
+            />
+            <Route
+              path="/forgot-password"
+              render={(props) => <ForgetPassword {...props} auth={authProps} />}
+              exact
+            />
+            <Route
+              path="/forgot-password/:email"
+              render={(props) => <ForgetPassword {...props} auth={authProps} />}
+            />
+            <Route
+              path="/new-password/:email"
+              render={(props) => <NewPassWord {...props} auth={authProps} />}
+            />
+            <Route path="/md-previewer" component={MdPreviewer} />
+            <Route path="/pastebin/view/:pasteBinId" component={ViewPasteBin} />
+            <Route path="/pastebin" component={PasteBin} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </Fragment>
       )}
     </Fragment>
   );
 }
 
-export default App;
+export default withRouter(App);

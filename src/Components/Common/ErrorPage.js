@@ -1,10 +1,10 @@
-import { Row, Col, Image, Button } from "react-bootstrap";
+import { Row, Col, Image, Button, Container } from "react-bootstrap";
 import ErrorPageImage from "../../Images/error.svg";
 import { Link } from "react-router-dom";
 
 const ErrorPage = () => {
   return (
-    <div>
+    <Container className="my-3">
       <Row>
         <Col className="text-center mt-3">
           <Image src={ErrorPageImage} alt="empty" className="w-50 p-5" />
@@ -17,7 +17,7 @@ const ErrorPage = () => {
           </Link>
         </Col>
       </Row>
-    </div>
+    </Container>
   );
 };
 

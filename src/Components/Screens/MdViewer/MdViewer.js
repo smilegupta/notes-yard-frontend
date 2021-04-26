@@ -1,5 +1,5 @@
-import { Fragment, useState } from "react";
-import { Row, Col } from "react-bootstrap";
+import { useState } from "react";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ReactMarkdown from "react-markdown";
 import { markdownText } from "../../../helper";
@@ -7,8 +7,9 @@ import { markdownText } from "../../../helper";
 const MdViewer = () => {
   // State Variables
   const [markdown, setMarkdown] = useState(markdownText);
+
   return (
-    <Fragment>
+    <Container className="my-3">
       <Row className="mb-3">
         <Col className="text-right">
           <Link to="/">
@@ -35,7 +36,7 @@ const MdViewer = () => {
           <ReactMarkdown>{markdown}</ReactMarkdown>
         </Col>
       </Row>
-    </Fragment>
+    </Container>
   );
 };
 

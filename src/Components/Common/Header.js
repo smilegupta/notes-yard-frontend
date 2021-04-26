@@ -61,16 +61,16 @@ const Header = ({ auth }) => {
                   </LinkContainer>
                 </Fragment>
               ) : (
-                  <Fragment>
-                    <LinkContainer to="/register">
-                      <Nav.Link className="pr-0"> Sign Up </Nav.Link>
-                    </LinkContainer>
+                <Fragment>
+                  <LinkContainer to="/register">
+                    <Nav.Link className="pr-0"> Sign Up </Nav.Link>
+                  </LinkContainer>
 
-                    <LinkContainer to="/login">
-                      <Nav.Link className="pr-0"> Sign In</Nav.Link>
-                    </LinkContainer>
-                  </Fragment>
-                )}
+                  <LinkContainer to="/login">
+                    <Nav.Link className="pr-0"> Sign In</Nav.Link>
+                  </LinkContainer>
+                </Fragment>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>

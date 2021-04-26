@@ -1,13 +1,12 @@
-import { Fragment } from "react";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 
 const Notebook = () => {
   return (
-    <Fragment>
+    <Container className="my-3">
       <Row className="mb-3">
         <Col className="text-right">
-          <Link to="/">
+          <Link to="/home">
             <i className="las la-arrow-left" /> Go Back
           </Link>
         </Col>
@@ -24,7 +23,7 @@ const Notebook = () => {
           <br />
         </Col>
       </Row>
-    </Fragment>
+    </Container>
   );
 };
 
