@@ -8,6 +8,16 @@ const MdViewer = () => {
   // State Variables
   const [markdown, setMarkdown] = useState(markdownText);
 
+  // Function to Download Markdown File
+  const markdownDownload = () => {
+    const element = document.createElement("a");
+    const file = new Blob([markdown], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = "myFile.md";
+    document.body.appendChild(element); // Required for this to work in FireFox
+    element.click();
+  };
+
   return (
     <Container className="my-3">
       <Row className="mb-3">
@@ -19,8 +29,7 @@ const MdViewer = () => {
       </Row>
       <Row>
         <Col sm={12} lg={12} xl={12} md={12} className="no-gutters">
-          <h4>MD Viewer</h4>
-          <br />
+          <h4>MD Viewer  <i className="las la-download cursor-pointer" onClick={() => markdownDownload()} /> </h4>
         </Col>
       </Row>
       <Row>
