@@ -1,5 +1,5 @@
-import { Fragment, useState } from 'react'
-import { Row, Col } from "react-bootstrap";
+import { useState } from 'react'
+import { Row, Col, Container } from "react-bootstrap";
 import { Link, withRouter } from "react-router-dom";
 import { notebooks } from '../../../helper'
 import NotebookCard from '../../Common/NotebookCard';
@@ -12,7 +12,7 @@ const HomeScreen = ({ auth }) => {
   const [modalStatus, setModalStatus] = useState(false);
 
   return (
-    <Fragment>
+    <Container className="my-3">
       <Row className="mb-3">
         <Col className="text-right">
           <Link to="/">
@@ -50,7 +50,7 @@ const HomeScreen = ({ auth }) => {
         setModalStatus={setModalStatus}
         userId={userId}
       />
-    </Fragment>
+   </Container>
   )
 }
 

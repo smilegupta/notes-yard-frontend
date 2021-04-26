@@ -1,9 +1,10 @@
-import { Row, Col, Image, Button } from "react-bootstrap";
+import { Row, Col, Image, Button, Container } from "react-bootstrap";
 import HomeScreenImage from "../../../Images/homescreen.svg";
 import { Link } from "react-router-dom";
 
 const Welcome = () => {
   return (
+    <Container className="my-3">
     <Row>
       <Col className="text-center mt-3">
         {" "}
@@ -32,6 +33,7 @@ const Welcome = () => {
         </Link>
       </Col>
     </Row>
+     </Container>
   );
 };
 

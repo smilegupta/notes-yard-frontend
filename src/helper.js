@@ -63,6 +63,23 @@ export const notebooks = [
     }
 ]
 
+export function replaceTags(str) {
+	const tagsToReplace = {
+    	'<': '&lt;',
+    	'>': '&gt;'
+	};
+
+	function replaceTag(tag) {
+    	return tagsToReplace[tag] || tag;
+	}
+
+	function safe_tags_replace(str) {
+    	return str.replace(/[&<>]/g, replaceTag);
+	}
+
+	return safe_tags_replace(str);
+}
+
 
 export const markdownText = 
 ` # Markdown syntax guide
