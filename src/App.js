@@ -60,7 +60,7 @@ function App({ location }) {
               auth={authProps}
             />
             <ProtectedRoute
-              path="/notebook/:id"
+              path="/notebook/:id/:name"
               component={NotebookPage}
               auth={authProps}
             />

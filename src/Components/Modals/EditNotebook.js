@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
-import { editNotebook, getNotebook } from "../../CRUD/notebook.crud"
+import { editNotebook } from "../../CRUD/notebook.crud";
 toast.configure();
 Modal.setAppElement("*");
 
@@ -10,22 +10,22 @@ const EditNotebook = ({
   modalStatus,
   setModalStatus,
   userId,
-  setApiResponse,
   notebookId,
-  name
+  name,
+  setInitialNotebookName,
 }) => {
   // State Variables
-  const [notebookName, setNotebookName] = useState('');
+  const [notebookName, setNotebookName] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(modalStatus){
-        setNotebookName(name)
-    }else{
-        setNotebookName("")
+    if (modalStatus) {
+      setNotebookName(name);
+    } else {
+      setNotebookName("");
     }
-  }, [modalStatus])
+  }, [modalStatus]);
 
   // Validating that Collection Name
   const validateFields = () => {
@@ -39,19 +39,18 @@ const EditNotebook = ({
 
   // Close Modal Function
   const closeModal = () => {
-    setError('')
-    setNotebookName('')
-    setModalStatus(false)
-  }
+    setError("");
+    setNotebookName("");
+    setModalStatus(false);
+  };
 
-  // Creating Notebook API
+  // Editing Notebook API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateFields()) return;
     try {
-      await editNotebook(userId, notebookName, notebookId );
-      const updatedList = await getNotebook(userId);
-      setApiResponse(updatedList.data);
+      await editNotebook(userId, notebookName, notebookId);
+      setInitialNotebookName(notebookName);
       const message = "Bingo! You have edited Notebook Details Successfully";
       toast.success(message, {
         position: "top-right",
@@ -109,7 +108,7 @@ const EditNotebook = ({
                   value={notebookName}
                   placeholder="For Eg: Notebook1"
                   onChange={(e) => {
-                      e.preventDefault()
+                    e.preventDefault();
                     setNotebookName(e.target.value);
                   }}
                   onBlur={validateFields}
@@ -125,7 +124,7 @@ const EditNotebook = ({
               className="btn btn-primary"
               disabled={loading}
             >
-            Edit Notebook {loading ? "  " : ""}
+              Edit Notebook {loading ? "  " : ""}
               <span
                 className={loading ? "spinner-border spinner-border-sm" : ""}
                 role="status"

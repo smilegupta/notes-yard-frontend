@@ -29,5 +29,5 @@ export function editNotebook(userId, notebookName, notebookId) {
     const payload = {
       userId, notebookName
     };
-    return rawAxios.put(API_URL + EDIT_NOTEBOOK + notebookId + payload);
+    return rawAxios.put(API_URL + EDIT_NOTEBOOK + notebookId , payload);
   }
