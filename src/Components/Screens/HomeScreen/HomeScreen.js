@@ -74,6 +74,9 @@ const HomeScreen = ({ auth }) => {
                     name={notebook.notebookName}
                     notesCount={notebook.notesCount}
                     pattern={notebook.pattern}
+                    userId={userId}
+                    notebookId={notebook.notebookId}
+                    setApiResponse={setApiResponse}
                   />
                 </Link>
               </Col>
