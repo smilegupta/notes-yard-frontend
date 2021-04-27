@@ -16,7 +16,6 @@ import NotebookPage from "./Components/Screens/NotebookPage/Notebook";
 import ViewPasteBin from "./Components/Screens/PasteBin/ViewPasteBin";
 
 function App({ location }) {
-  console.log(location);
   // State Variables
   const [isAuthenticated, setAuthenticated] = useState(false);
   const [isAuthenticating, setAuthenticating] = useState(true);

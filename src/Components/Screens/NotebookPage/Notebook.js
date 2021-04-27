@@ -5,8 +5,11 @@ import { Link, withRouter, useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 import { deleteNotebook } from "../../../CRUD/notebook.crud";
 import EditNotebook from "../../Modals/EditNotebook";
+import CreateNote from "../../Modals/CreateNote";
 import { getNotes } from "../../../CRUD/note.crud";
 import "../../../../node_modules/react-quill/dist/quill.snow.css";
+import NoteTitle from "../../Common/NoteTitle";
+import ReadNote from "../../Modals/ReadNote";
 
 toast.configure();
 
@@ -17,16 +20,20 @@ const Notebook = ({ match, auth }) => {
   const notebookId = match.params.id;
   const userId = auth.user.attributes.sub;
   const [modalStatus, setModalStatus] = useState(false);
+  const [createNoteModal, setCreateNoteModal] = useState(false);
+  const [apiResponse, setApiResponse] = useState("");
+ 
 
-  // useEffect(() => {
-  //   getPasteBinResponse();
-  // }, []);
+  useEffect(() => {
+    listNotes();
+  }, []);
 
-  // API to get pastebin
-  // const getPasteBinResponse = async () => {
-  //   const res = await getNotes(notebookId);
-  //   console.log(res.data)
-  // };
+ 
+  //API to get all Notes
+  const listNotes = async () => {
+    const res = await getNotes(notebookId);
+    setApiResponse(res.data);
+  };
 
   // Function to delete Notebook
   const deleteNotebookFun = async (e) => {
@@ -83,7 +90,10 @@ const Notebook = ({ match, auth }) => {
         >
           <h3>
             {notebookName} &nbsp;
-            <i className="las la-plus cursor-pointer text-success" />{" "}
+            <i
+              className="las la-plus cursor-pointer text-success"
+              onClick={() => setCreateNoteModal(true)}
+            />{" "}
             <i
               className="las la-cog text-info cursor-pointer"
               onClick={(e) => editNotebookFun(e)}
@@ -97,35 +107,47 @@ const Notebook = ({ match, auth }) => {
         </Col>
       </Row>
       <Row>
-        <Col sm={12} lg={4} xl={4} md={4} xs={12}>
-          <div className="card bg-light mb-3 note-card">
-            <div className="card-header nameslip-ellipsis"> Header </div>
-            <div className="card-body">
-              <p className="card-text block-with-text">
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content. Some quick example text to build
-                on the card title and make up the bulk of the card's content.
-                Some quick example text to build on the card title and make up
-                the bulk of the card's content.
-              </p>
-              <p className="text-right">
-                <i
-                  className="las la-glasses text-success cursor-pointer ml-1 "
-                  style={{ fontSize: "20px" }}
-                />
-                <i
-                  className="las la-cog text-info cursor-pointer ml-1"
-                  style={{ fontSize: "20px" }}
-                />
-                <i
-                  className="las la-trash text-danger cursor-pointer ml-1"
-                  style={{ fontSize: "20px" }}
-                />
-              </p>
-            </div>
+        {apiResponse &&
+          apiResponse.length > 0 &&
+          apiResponse.map((notebook, idx) => (
+            <Col
+              sm={12}
+              lg={4}
+              xl={4}
+              md={4}
+              xs={12}
+              className="mx-md-0 mx-auto"
+              key={idx}
+            >
+              <NoteTitle noteTitle={notebook.noteTitle} note={notebook.note} />
+            </Col>
+          ))}
+
+        <Col
+          sm={12}
+          lg={4}
+          xl={4}
+          md={4}
+          xs={12}
+          onClick={() => setCreateNoteModal(true)}
+          className="cursor-pointer"
+        >
+          <div className="card bg-light mb-3 note-card d-flex align-items-center justify-content-center">
+            <i
+              className="las la-plus-circle cursor-pointer"
+              style={{ fontSize: "22px" }}
+            />
+            Create Note
           </div>
         </Col>
       </Row>
+      <CreateNote
+        setModalStatus={setCreateNoteModal}
+        modalStatus={createNoteModal}
+        notebookId={notebookId}
+        userId={userId}
+        setApiResponse={setApiResponse}
+      />
       <EditNotebook
         setModalStatus={setModalStatus}
         modalStatus={modalStatus}
@@ -134,6 +156,7 @@ const Notebook = ({ match, auth }) => {
         name={notebookName}
         setInitialNotebookName={setInitialNotebookName}
       />
+     
     </Container>
   );
 };
