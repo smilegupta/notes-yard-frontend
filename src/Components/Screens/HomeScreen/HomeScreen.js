@@ -89,9 +89,8 @@ const HomeScreen = ({ auth }) => {
             xl={3}
             md={4}
             xs={8}
-            className="no-gutters mx-md-0 mx-auto"
+            className="no-gutters mx-md-0 mx-auto cursor-pointer"
             onClick={() => setModalStatus(true)}
-            className="cursor-pointer"
           >
             <div className="card notebook-card shadow mb-4 notebook-empty d-flex align-items-center justify-content-center">
               <i
