@@ -35,7 +35,7 @@ const ViewPasteBin = ({ match }) => {
           {" "}
           {pasteContent && (
             <Fragment>
-              <div className="alert alert-dark text-center" role="alert">
+              <div className="alert alert-dark text-center" style={{borderRadius: "0px"}} role="alert">
                 This paste is brought to you by{" "}
                 <a href="https://notes-yard.smilegupta.tech/" target="_blank" rel="noreferrer">
                   {" "}
