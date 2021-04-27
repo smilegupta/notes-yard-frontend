@@ -150,3 +150,16 @@ textarea.form-control {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
+/************ Note ****************/
+
+.note-card{
+  height: 220px;
+}
+
+.block-with-text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;  
+}

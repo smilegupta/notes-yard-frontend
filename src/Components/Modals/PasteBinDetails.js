@@ -14,8 +14,8 @@ const PasteBinDetailsModal = ({
 }) => {
   // Constants
   const embededLink = `https://notes-yard.smilegupta.tech/pastebin/view/${pasteBinId}`;
-  const iFrameCode = `<iframe width="560" height="315" src=${embededLink}></iframe>`;
-
+  const iFrameCode = ` <iframe src=${embededLink} style="border:none;width:100%"></iframe>`;
+ 
   // Function to Download Paste Bin Content
   const pasteBinDownload = () => {
     const element = document.createElement("a");

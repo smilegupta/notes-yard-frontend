@@ -10,6 +10,7 @@
     "aws-amplify": "^3.3.27",
     "axios": "^0.21.1",
     "dompurify": "^2.2.7",
+    "html-react-parser": "^1.2.6",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-copy-to-clipboard": "^5.0.3",
