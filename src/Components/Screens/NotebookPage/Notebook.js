@@ -21,13 +21,11 @@ const Notebook = ({ match, auth }) => {
   const [modalStatus, setModalStatus] = useState(false);
   const [createNoteModal, setCreateNoteModal] = useState(false);
   const [apiResponse, setApiResponse] = useState("");
- 
 
   useEffect(() => {
     listNotes();
   }, []);
 
- 
   //API to get all Notes
   const listNotes = async () => {
     const res = await getNotes(notebookId);
@@ -41,7 +39,7 @@ const Notebook = ({ match, auth }) => {
       try {
         await deleteNotebook(notebookId, userId);
         history.push("/home");
-        const message = "Your Notebook Have Been Deleted";
+        const message = "Your notebook have been deleted";
         toast.success(message, {
           position: "top-right",
           autoClose: 0,
@@ -118,7 +116,14 @@ const Notebook = ({ match, auth }) => {
               className="mx-md-0 mx-auto"
               key={idx}
             >
-              <NoteTitle noteTitle={note.noteTitle} note={note.note} noteId={note.noteId} notebookId={note.notebookId} userId={userId} setApiResponse={setApiResponse} />
+              <NoteTitle
+                noteTitle={note.noteTitle}
+                note={note.note}
+                noteId={note.noteId}
+                notebookId={note.notebookId}
+                userId={userId}
+                setApiResponse={setApiResponse}
+              />
             </Col>
           ))}
 
@@ -155,7 +160,6 @@ const Notebook = ({ match, auth }) => {
         name={notebookName}
         setInitialNotebookName={setInitialNotebookName}
       />
-     
     </Container>
   );
 };

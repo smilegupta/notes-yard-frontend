@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
-import { createNotebook, getNotebook } from "../../CRUD/notebook.crud"
+import { createNotebook, getNotebook } from "../../CRUD/notebook.crud";
 toast.configure();
 Modal.setAppElement("*");
 
@@ -9,14 +9,14 @@ const CreateNotebook = ({
   modalStatus,
   setModalStatus,
   userId,
-  setApiResponse
+  setApiResponse,
 }) => {
   // State Variables
   const [notebookName, setNotebookName] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Validating that Collection Name
+  // Validating that NoteBook Title
   const validateFields = () => {
     setError("");
     if (notebookName === null || notebookName === "") {
@@ -28,17 +28,17 @@ const CreateNotebook = ({
 
   // Close Modal Function
   const closeModal = () => {
-    setError('')
-    setNotebookName('')
-    setModalStatus(false)
-  }
+    setError("");
+    setNotebookName("");
+    setModalStatus(false);
+  };
 
   // Creating Notebook API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateFields()) return;
     try {
-      await createNotebook(userId, notebookName );
+      await createNotebook(userId, notebookName);
       const updatedList = await getNotebook(userId);
       setApiResponse(updatedList.data);
       const message = "Bingo! New Notebook Have Been Created Successfully.";
