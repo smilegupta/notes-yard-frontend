@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-/* eslint-disable no-unused-vars */
 import { useState, useEffect } from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import { Link, withRouter, useHistory } from "react-router-dom";
@@ -10,7 +9,6 @@ import CreateNote from "../../Modals/CreateNote";
 import { getNotes } from "../../../CRUD/note.crud";
 import "../../../../node_modules/react-quill/dist/quill.snow.css";
 import NoteTitle from "../../Common/NoteTitle";
-import ReadNote from "../../Modals/ReadNote";
 
 toast.configure();
 
@@ -110,7 +108,7 @@ const Notebook = ({ match, auth }) => {
       <Row>
         {apiResponse &&
           apiResponse.length > 0 &&
-          apiResponse.map((notebook, idx) => (
+          apiResponse.map((note, idx) => (
             <Col
               sm={12}
               lg={4}
@@ -120,7 +118,7 @@ const Notebook = ({ match, auth }) => {
               className="mx-md-0 mx-auto"
               key={idx}
             >
-              <NoteTitle noteTitle={notebook.noteTitle} note={notebook.note} />
+              <NoteTitle noteTitle={note.noteTitle} note={note.note} noteId={note.noteId} notebookId={note.notebookId} userId={userId} setApiResponse={setApiResponse} />
             </Col>
           ))}
 
