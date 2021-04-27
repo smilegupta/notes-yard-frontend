@@ -43,7 +43,7 @@ const Pastebin = () => {
     }
   };
 
-  // Validating that Collection Name
+  // Validating that Pastebin content
   const validateFields = () => {
     setError("");
     if (pastebin === null || pastebin === "") {

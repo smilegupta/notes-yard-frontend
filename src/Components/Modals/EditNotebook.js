@@ -27,7 +27,7 @@ const EditNotebook = ({
     }
   }, [modalStatus]);
 
-  // Validating that Collection Name
+  // Validating that Notebook Title
   const validateFields = () => {
     setError("");
     if (notebookName === null || notebookName === "") {

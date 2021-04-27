@@ -1,24 +1,38 @@
-import { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useState, useEffect } from "react";
 import Modal from "react-modal";
 import { toast } from "react-toastify";
-import { createNote, getNotes } from "../../CRUD/note.crud";
+import { editNotebook, getNotes } from "../../CRUD/note.crud";
 import ReactQuill from "react-quill";
 import "../../../node_modules/react-quill/dist/quill.snow.css";
 toast.configure();
 Modal.setAppElement("*");
 
-const CreateNote = ({
+const EditNote = ({
   modalStatus,
   setModalStatus,
   notebookId,
   userId,
   setApiResponse,
+  noteId,
+  noteTitle,
+  noteDesc,
 }) => {
   // State Variables
   const [noteName, setNoteName] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const [noteContent, setNoteContent] = useState("");
+
+  useEffect(() => {
+    if (modalStatus) {
+      setNoteName(noteTitle);
+      setNoteContent(noteDesc);
+    } else {
+      setNoteName("");
+      setNoteContent("");
+    }
+  }, [modalStatus]);
 
   // Validating that Note Title
   const validateFields = () => {
@@ -38,15 +52,15 @@ const CreateNote = ({
     setModalStatus(false);
   };
 
-  // Creating Note API
+  // Editing Note API
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateFields()) return;
     try {
-      await createNote(userId, notebookId, noteName, noteContent);
+      await editNotebook(userId, notebookId, noteName, noteContent, noteId);
       const updatedList = await getNotes(notebookId);
       setApiResponse(updatedList.data);
-      const message = "Bingo! New Note Have Been Created Successfully.";
+      const message = "Bingo! Your note content have been updated";
       toast.success(message, {
         position: "top-right",
         autoClose: 0,
@@ -82,7 +96,7 @@ const CreateNote = ({
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header" style={{ padding: "1.5rem" }}>
-            <h5 className="modal-title">Create Note</h5>
+            <h5 className="modal-title">Editd Note</h5>
             <button
               type="button"
               className="close"
@@ -126,7 +140,7 @@ const CreateNote = ({
               className="btn btn-primary"
               disabled={loading}
             >
-              Create Note {loading ? "  " : ""}
+              Edit Note {loading ? "  " : ""}
               <span
                 className={loading ? "spinner-border spinner-border-sm" : ""}
                 role="status"
@@ -140,4 +154,4 @@ const CreateNote = ({
   );
 };
 
-export default CreateNote;
+export default EditNote;
