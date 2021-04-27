@@ -22,7 +22,6 @@ const HomeScreen = ({ auth }) => {
   // API to get list of notebooks
   const getNotebooksResponse = async () => {
     const res = await getNotebook(userId);
-    console.log(res.data);
     setApiResponse(res.data);
     setLoading(false);
   };
@@ -68,6 +67,7 @@ const HomeScreen = ({ auth }) => {
                 md={4}
                 xs={8}
                 className="mx-md-0 mx-auto"
+                key={idx}
               >
                 <Link
                   to={`/notebook/${notebook.notebookId}/${notebook.notebookName}`}
@@ -91,6 +91,7 @@ const HomeScreen = ({ auth }) => {
             xs={8}
             className="no-gutters mx-md-0 mx-auto"
             onClick={() => setModalStatus(true)}
+            className="cursor-pointer"
           >
             <div className="card notebook-card shadow mb-4 notebook-empty d-flex align-items-center justify-content-center">
               <i
@@ -102,7 +103,6 @@ const HomeScreen = ({ auth }) => {
           </Col>
         </Row>
       )}
-
       <CreateNotebook
         modalStatus={modalStatus}
         setModalStatus={setModalStatus}

@@ -136,9 +136,11 @@ a {
   border: 0.1px solid #868e96;
 }
 
-textarea.form-control {
+input.form-control, textarea.form-control {
   border-radius: 0px  !important;
 }
+
+
 
 .nameslip-border{
   border-top: 0.1px solid #868e96;
@@ -162,4 +164,38 @@ textarea.form-control {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;  
+}
+
+/************ Rich Text Editor ****************/
+
+.ql-container.ql-snow{
+    display: block im !important;
+    width: 100% !important;
+    padding: .375rem .75rem !important;
+    font-size: 1rem !important;
+    line-height: 1.5 !important;
+    font-weight: 700 !important;
+    color: #555  !important;
+    background-color: #fff;
+    background-clip: padding-box !important;
+    border: 2px solid #333 !important;
+    border-top: 0px !important;
+    border-radius: 0px !important;
+    min-height: 150px !important;
+    font-family: Neucha,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+
+}
+
+.ql-toolbar.ql-snow{
+  display: block !important;
+  width: 100% !important;
+  padding: .375rem .75rem !important;
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.5 !important;
+  color: #555 !important;
+  background-color: #fff !important;
+  background-clip: padding-box !important;
+  border: 2px solid #333 !important;
+  font-family: Neucha,-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
