@@ -21,7 +21,7 @@ const ReadNote = ({ modalStatus, setModalStatus, note, noteTitle }) => {
             </button>
           </div>
           <div className="modal-body" style={{ padding: "1.5rem" }}>
-            <div>{parse(note)}</div>
+            <div className="text-break">{parse(note)}</div>
           </div>
         </div>
       </div>
