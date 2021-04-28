@@ -1,6 +1,6 @@
 import { Fragment, useState } from "react";
 import ReadNote from "../Modals/ReadNote";
-import { removeHTMLTags, ptospan } from "../../helper";
+import { ptospan } from "../../helper";
 import { deleteNote, getNotes } from "../../CRUD/note.crud";
 import { toast } from "react-toastify";
 import EditNote from "../Modals/EditNote";
