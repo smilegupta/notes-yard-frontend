@@ -1,9 +1,10 @@
 import { Fragment, useState } from "react";
 import ReadNote from "../Modals/ReadNote";
-import { removeHTMLTags } from "../../helper";
+import { removeHTMLTags, ptospan } from "../../helper";
 import { deleteNote, getNotes } from "../../CRUD/note.crud";
 import { toast } from "react-toastify";
 import EditNote from "../Modals/EditNote";
+import parse from "html-react-parser";
 toast.configure();
 
 const NoteTitle = ({
@@ -73,7 +74,7 @@ const NoteTitle = ({
         <div className="card-body">
           <span className="card-text block-with-text">
             {" "}
-            {removeHTMLTags(`${note}`)}{" "}
+            {parse(ptospan(note))}{" "}
           </span>
         </div>
         <div
