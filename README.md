@@ -3,7 +3,7 @@
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/smilegupta) [![Made With Love](https://img.shields.io/badge/Made%20With-Love-orange.svg)](https://github.com/smilegupta)
 
 Notes Yard is a highly scalable, low cost and high performant one stop solution to:
-- Upload images and get sharable link and getting iframes to add in your website
+- Upload notes and get sharable link and getting iframes to add in your website
 - A Markdown Editor
 - Creating private notebooks and notes
 
