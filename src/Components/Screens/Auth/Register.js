@@ -95,7 +95,7 @@ const Login = () => {
         password,
       });
       let message =
-        "Verification email successfully. Please verify your account by clicking that link before logging in.";
+        "Verification email sent successfully. Please verify your account by clicking that link before logging in.";
       toast.success(message, {
         position: "top-right",
         autoClose: 0,
